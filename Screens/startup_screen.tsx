@@ -4,7 +4,7 @@ import {Text, View} from 'react-native';
 const Startup = () => {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Startup Screen</Text>
+      <Text style={{color:'red'}}>Startup Screen</Text>
     </View>
   );
 };
