@@ -1,23 +1,20 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet, Linking } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'; // Assuming MaterialIcons are installed and imported properly
 
-const Card = ({ title, description, imageUrl }) => {
+const Card = ({ title, description, imageUrl, postedBy, locationUrl,upvotes,downvotes,onUpvote,onDownvote }) => {
+
   return (
     <View style={styles.card}>
-      <View style={styles.header}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' }}>
         <Text style={styles.title}>{title}</Text>
-        <View style={styles.votes}>
-          <TouchableOpacity onPress={() => {/* Handle upvote action */}}>
-            <MaterialIcons name="keyboard-arrow-up" size={24} color="green" />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => {/* Handle downvote action */}}>
-            <MaterialIcons name="keyboard-arrow-down" size={24} color="red" />
-          </TouchableOpacity>
-        </View>
       </View>
-      <Image source={{ uri: imageUrl }} style={styles.image} />
       <Text style={styles.description}>{description}</Text>
+      <TouchableOpacity onPress={() => Linking.openURL(locationUrl)} style={{ flexDirection: 'row' }}>
+        <Image source={require('../../static/images/maps.png')} style={{ height: 20, width: 20, marginRight: 5, marginBottom: 10 }} />
+        <Text style={[styles.text, { color: '#3550ca', fontFamily: 'Poppins-Medium' }]}>Location</Text>
+      </TouchableOpacity>
+      <Image source={{ uri: imageUrl }} style={styles.image} />
     </View>
   );
 };
@@ -26,16 +23,12 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: '#fff',
     borderRadius: 8,
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: '#ccc',
-    margin: 10,
+    borderBottomLeftRadius:0,
+    width:380,
+    borderBottomRightRadius:0,
     padding: 15,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 10,
   },
   title: {
     fontSize: 20,
@@ -44,7 +37,7 @@ const styles = StyleSheet.create({
   },
   votes: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'baseline',
   },
   image: {
     width: '100%',
@@ -55,7 +48,16 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     color: '#333',
+    marginBottom: 10,
+    fontFamily: 'Poppins-Regular',
   },
+  text: {
+    fontSize: 16,
+    color: '#333',
+    fontFamily: 'Poppins-Medium',
+    marginRight: 10,
+    marginLeft: 0,
+  }
 });
 
 export default Card;

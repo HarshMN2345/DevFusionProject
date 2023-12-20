@@ -44,7 +44,7 @@ const InputField: React.FC<InputFieldProps> = ({
             )}
             {fieldButtonLabel && (
                 <TouchableOpacity onPress={fieldButtonFunction}>
-                    <Text style={{ color: '#AD40AF', fontWeight: '700' }}>{fieldButtonLabel}</Text>
+                    <Text style={{ color: '#40A2AF', fontWeight: '700' }}>{fieldButtonLabel}</Text>
                 </TouchableOpacity>
             )}
         </View>
